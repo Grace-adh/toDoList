@@ -1,0 +1,24 @@
+body{
+    background-color: #D7BAE8;
+}
+div{
+    background-color: black;
+    width: 50em;
+    margin: auto;
+    border-radius: 1em;
+    color: white;
+    margin-top: 10em;
+    padding-bottom: 10em;
+}
+strong{
+    color:#8531B6;
+}
+input[type=text]{
+    height: 2.5em;
+}
+input[type=submit]{
+    background-color: #8531B6;
+}
+h3{
+    color: #8531B6;
+}

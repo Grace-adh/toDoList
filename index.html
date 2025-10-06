@@ -12,8 +12,8 @@
 <body>
     <div class="">
         <h1 class="ms-5 pt-3">to<strong>Do</strong></h1><br>
-        <form action="" class="ms-5">
-            <input type="text" placeholder="Enter your task" class="w-75">  <input type="submit" value="Add" class="ps-4 pe-4 rounded-4 text-white fs-5 fw-bold">
+        <form action="" class="ms-5" >
+            <input type="text" placeholder="Enter your task" class="w-75" id="text">  <input type="submit" value="Add" id="btnsubmit"  class="ps-4 pe-4 rounded-4 text-white fs-5 fw-bold">
         </form><br><br>
 
         <section>
@@ -23,16 +23,13 @@
                     <th>List Tasks</th>
                     <th>Actions</th>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td>
-                        </td>
-                    </tr>
+                <tbody id="taskList" class="text-white">
                 </tbody>
-                
+            
             </table>
         </section>
     </div>
+     <script src="index.js"></script>
+
 </body>
 </html>

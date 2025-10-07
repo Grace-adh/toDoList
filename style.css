@@ -1,17 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 body{
     background-color: #D7BAE8;
     display: flex;
     align-items: center;
     min-height: 100vh;
     justify-content: center;
-
 }
 div{
     background-color: black;
     width: 50em;
     border-radius: 1em;
     color: white;
-    padding-bottom: 10em;
+    padding-bottom: 5em;
 }
 strong{
     color:#8531B6;
@@ -24,4 +27,26 @@ input[type=submit]{
 }
 h3{
     color: #8531B6;
+}
+
+.table {
+  background-color: #000; /* noir */
+  color: white;            /* texte blanc */
+}
+@media(max-width:768px){
+    h1{
+        text-align: center;
+    }
+    form{
+        display: flex;
+        flex-wrap: wrap;
+        gap:1rem;
+        justify-content: center;
+    }
+    input[type=text]{
+        min-width: 50vh ;
+    }
+    input[type=submit]{
+        min-width: 20vh;
+    }
 }

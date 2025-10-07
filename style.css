@@ -1,13 +1,16 @@
 body{
     background-color: #D7BAE8;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    justify-content: center;
+
 }
 div{
     background-color: black;
     width: 50em;
-    margin: auto;
     border-radius: 1em;
     color: white;
-    margin-top: 10em;
     padding-bottom: 10em;
 }
 strong{

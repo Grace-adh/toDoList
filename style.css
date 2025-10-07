@@ -29,10 +29,7 @@ h3{
     color: #8531B6;
 }
 
-.table {
-  background-color: #000; /* noir */
-  color: white;            /* texte blanc */
-}
+
 @media(max-width:768px){
     h1{
         text-align: center;
@@ -48,5 +45,11 @@ h3{
     }
     input[type=submit]{
         min-width: 20vh;
+    }
+    h3{
+        text-align: center;
+    }
+    table{
+        min-width: 50vh;
     }
 }

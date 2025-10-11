@@ -1,40 +1,71 @@
-let texte=document.getElementById('text');
-let btn=document.getElementById('btnsubmit');
-let taskList=document.getElementById('taskList');
+let texte=document.getElementById("text");
+let btn=document.getElementById("btnsubmit");
+let taskList=document.getElementById("taskList");
+let btnClear=document.getElementById("btnClear");
 
-btn.addEventListener('click',(e)=>{
-    
-    e.preventDefault();
+//Mode Dark/Light
+let btnMode = document.getElementById("btnmode");
+let div = document.getElementById("div");
+let title = document.querySelector("h1"); // cible le h1
 
-    //Création des éléments
-    let tr=document.createElement("tr");
-    let td=document.createElement('td');
-    let btnDelete=document.createElement('button');
-    let btnUpdate=document.createElement('button');
+btnMode.addEventListener('click', () => {
+  if (btnMode.innerHTML === "White") {
+    // Mode "Black" (tu montres "Black" après le clic)
+    btnMode.innerHTML = "Black";
+    btnMode.style.color = "white";
+    btnMode.style.backgroundColor = "black";
 
-    // Ajouter des éléments
-    tr.appendChild(td);
-    tr.appendChild(btnDelete);
-    tr.appendChild(btnUpdate);
-    taskList.appendChild(tr);
+    div.style.backgroundColor = "white";
+    // => texte noir sur fond blanc
+    div.style.color = "black";
+    if (title) title.style.color = "black";
+  } else {
+    // Mode "White"
+    btnMode.innerHTML = "White";
+    btnMode.style.color = "black";
+    btnMode.style.backgroundColor = "white";
 
-    //Affecter des valeurs
-    td.textContent=texte.value;
+    div.style.backgroundColor = "black";
+    // => texte blanc sur fond noir
+    div.style.color = "white";
+    if (title) title.style.color = "white";
+  }
+});
+
+
+let tasks=JSON.parse(localStorage.getItem("tasks")) || [];
+
+function renderTasks(){
+    taskList.innerHTML="";
+    tasks.forEach((task,index)=>{
+        createTaskRow(task,index);
+    });
+}
+
+function createTaskRow(taskText,index){
+    //Créer les elts
+    td=document.createElement("td");
+    tr=document.createElement("tr");
+    btnDelete=document.createElement("button");
+    btnUpdate=document.createElement("button");
+
+    //Assigner les contenues
+    td.textContent=taskText;
     btnDelete.textContent="Delete";
     btnUpdate.textContent="Update";
 
-    //Style des bouttons 
     btnDelete.style.backgroundColor="#8531B6";
-    btnDelete.style.color="white";
-    
     btnUpdate.style.backgroundColor="#8531B6";
+    btnDelete.style.color="white";
     btnUpdate.style.color="white";
 
+    //Button supprimer
     btnDelete.addEventListener('click',()=>{
-        tr.remove();
+        tasks.splice(index,1);
+        localStorage.setItem("tasks",JSON.stringify(tasks));
+        renderTasks();
     });
-
-
+    //Button update
     btnUpdate.addEventListener('click',()=>{
         let inputEdit=document.createElement("input");
         inputEdit.type="text";
@@ -42,14 +73,38 @@ btn.addEventListener('click',(e)=>{
 
         tr.replaceChild(inputEdit,td);
 
-        //'blur' pour la perte du focus
         inputEdit.addEventListener('blur',()=>{
-            td.textContent=inputEdit.value;
-            tr.replaceChild(td,inputEdit);
+            tasks[index]=inputEdit.value;
+            localStorage.setItem("tasks",JSON.stringify(tasks));
+            renderTasks();
         });
 
     });
+    //Assembler les elts
+    tr.appendChild(td);
+    tr.appendChild(btnDelete);
+    tr.appendChild(btnUpdate);
+    taskList.appendChild(tr);
 
-    //Rendre le champs input vide
+
+}
+
+btn.addEventListener('click',(e)=>{
+    e.preventDefault();
+    if (texte.value.trim() === "") return;
+
+    tasks.push(texte.value);
+    localStorage.setItem("tasks",JSON.stringify(tasks));
+    renderTasks();
     texte.value="";
 });
+
+//Vider le stockage 
+btnClear.addEventListener('click',(e)=>{
+    e.preventDefault();
+    tasks=[];
+    localStorage.removeItem("tasks");
+    renderTasks();
+});
+
+renderTasks();

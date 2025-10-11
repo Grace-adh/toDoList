@@ -6,31 +6,52 @@ let btnClear=document.getElementById("btnClear");
 //Mode Dark/Light
 let btnMode = document.getElementById("btnmode");
 let div = document.getElementById("div");
-let title = document.querySelector("h1"); // cible le h1
+let title = document.querySelector("h1");
 
-btnMode.addEventListener('click', () => {
+// 🔹 Au chargement : on récupère le mode sauvegardé
+let savedMode = localStorage.getItem("mode");
+
+// Si un mode a déjà été enregistré, on l’applique
+if (savedMode === "light") {
+  setLightMode();
+} else {
+  setDarkMode(); // par défaut
+}
+
+btnMode.addEventListener("click", () => {
   if (btnMode.innerHTML === "White") {
-    // Mode "Black" (tu montres "Black" après le clic)
-    btnMode.innerHTML = "Black";
-    btnMode.style.color = "white";
-    btnMode.style.backgroundColor = "black";
-
-    div.style.backgroundColor = "white";
-    // => texte noir sur fond blanc
-    div.style.color = "black";
-    if (title) title.style.color = "black";
+    // Passer en mode clair
+    setLightMode();
+    localStorage.setItem("mode", "light");
   } else {
-    // Mode "White"
-    btnMode.innerHTML = "White";
-    btnMode.style.color = "black";
-    btnMode.style.backgroundColor = "white";
-
-    div.style.backgroundColor = "black";
-    // => texte blanc sur fond noir
-    div.style.color = "white";
-    if (title) title.style.color = "white";
+    // Passer en mode sombre
+    setDarkMode();
+    localStorage.setItem("mode", "dark");
   }
 });
+
+// ----------------------
+// 🔧 Fonctions utilitaires
+// ----------------------
+function setLightMode() {
+  btnMode.innerHTML = "Black";
+  btnMode.style.color = "white";
+  btnMode.style.backgroundColor = "black";
+
+  div.style.backgroundColor = "white";
+  div.style.color = "black";
+  if (title) title.style.color = "black";
+}
+
+function setDarkMode() {
+  btnMode.innerHTML = "White";
+  btnMode.style.color = "black";
+  btnMode.style.backgroundColor = "white";
+
+  div.style.backgroundColor = "black";
+  div.style.color = "white";
+  if (title) title.style.color = "white";
+}
 
 
 let tasks=JSON.parse(localStorage.getItem("tasks")) || [];

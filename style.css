@@ -62,7 +62,7 @@ h3{
     
     input[type=text]{
         min-width: 30vh ;
-        margin-right: 3em;
+        margin-right: 6em;
     }
     input[type=submit]{
        margin-right: 6em;

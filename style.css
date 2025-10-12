@@ -54,3 +54,23 @@ h3{
     }
     
 }
+
+@media(max-width:575.98px){
+    h1{
+        text-align: center;
+    }
+    
+    input[type=text]{
+        min-width: 30vh ;
+        margin-right: 3em;
+    }
+    input[type=submit]{
+       margin-right: 6em;
+    }
+    h3{
+        text-align: center;
+    }
+    button[id="btnClear"]{
+        display: flex;
+    }
+}
